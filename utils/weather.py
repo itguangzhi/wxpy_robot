@@ -14,11 +14,11 @@ def get(city_name):
     weather_json = json.loads(response.text)
     info = list()
     if "data" not in weather_json:
-        info.append('未查询到{}'.format(city_name))
+        info.append('当前只能查询到国内市级天气情况\r\n未查询到{}'.format(city_name))
     else:
         a = weather_json['data']
         info.append('{0} 当前温度：{1}℃'.format(a['city'], a['wendu']))
-        info.append('温馨提示：{}'.format(a['ganmao']))
+        info.append('小妖精送温暖：{}'.format(a['ganmao']))
         info.append("-----------------------------")
         for i in range(0, 3):
             info.append('{0} {1}'.format(a["forecast"][i]['date'], a["forecast"][i]['type']))
@@ -27,6 +27,9 @@ def get(city_name):
             info.append(a["forecast"][i]['high'])
             info.append(a["forecast"][i]['low'])
             info.append("-----------------------------")
+
+        info.append("\r\n想要查询当天黄历，回复“hl”")
+        info.append("\r\n感觉我可以被调戏，就快加我为好友吧！")
     return '\r\n'.join(info)
 
 

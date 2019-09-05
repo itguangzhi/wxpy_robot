@@ -46,11 +46,14 @@ def get():
     if hl is None:
         return '暂查不到黄历'
     content = list()
-    content.append('今天 {}年{}月{}日 {}'.format(hl['year'], hl['month'], hl['day'], get_week_day()))
+    festival = hl['festivalList']
+    content.append("欢迎接收小妖精的农历信息\r\n")
+    content.append('今天是 {}年{}月{}日 {}'.format(hl['year'], hl['month'], hl['day'], get_week_day()))
     content.append('农历 {}月{}'.format(hl['cnmonth'], hl['cnday']))
-    content.append('节日 {}'.format(','.join(hl['festivalList'])))
-    content.append('适宜 {}'.format(hl['suit']))
-    content.append('忌讳 {}'.format(hl['taboo']))
+    if len(festival):
+        content.append('节日 {}'.format(','.join(hl['festivalList'])))
+    content.append('今天适合： {}'.format(hl['suit']))
+    content.append('一定不要： {}'.format(hl['taboo']))
     return '\r\n'.join(content)
 
 

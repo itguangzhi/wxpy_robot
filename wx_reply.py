@@ -14,10 +14,9 @@ def auto_accept_friends(msg):
     new_friend = msg.card.accept()
     # 向新的好友发送消息
     new_friend.send('既然你这么喜欢我，想加我为好友，那我就勉为其难的接受吧~')
-    new_friend.send('我现在支持查询城市天气\r\n你可以试试“qr北京”\r\n目前仅支持城市级别的实时天气')
+    new_friend.send('我现在支持查询城市天气\r\n你可以试试“tq北京”\r\n目前仅支持城市级别的实时天气')
     new_friend.send('我现在还可以查询当天的黄历信息\r\n你可以试试“hl”获取当天的黄历')
     new_friend.send('当然如果有什么其他需求，也可以告诉我，尽量满足呢~')
-
 
 
 def auto_reply(msg):
@@ -87,13 +86,13 @@ def get_msg_chinese_type(msg_type):
 def keyword_reply(msg):
     """关键字回复"""
     text = msg.text.lower()
-    if text.startswith('tq'):
+    if text.startswith('tq') or text.startswith("天气"):
         info = tq_info(text, 'tq')
         return msg.reply(info)
     # elif text.startswith('dt'):
     #     info = dt_info(text, 'dt')
     #     return msg.reply(info)
-    elif text == 'hl':
+    elif text == 'hl' or text == "huangli" or text == "黄历":
         info = lunar.get()
         return msg.reply(info)
     # elif text.startswith('mc'):
@@ -104,6 +103,8 @@ def keyword_reply(msg):
         pass
     elif text.startswith("tp"):
         return msg.reply("现实世界不允许传送！")
+    elif text == "在么":
+        return msg.reply("不借钱，不随份子")
 
 
 def tq_info(text, tag):
@@ -111,7 +112,7 @@ def tq_info(text, tag):
     if len(dm) > 0:
         info = weather.get(dm)
         return info
-    return '输入格式不正确'
+    return '整错啦，想好啦要说啥'
 
 
 def dt_info(text, tag):

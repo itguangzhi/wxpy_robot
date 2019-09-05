@@ -4,6 +4,7 @@
 import config as config
 import utils.ap_scheduler as ap_scheduler
 import utils.weather as weather
+import ssl
 
 
 def load_config_to_bot(bot):
@@ -161,7 +162,13 @@ def search_groups(bot, groups):
     split_names = groups.split('|')
     result_list = []
     for group in split_names:
-        result = bot.groups().search(group)
+        try:
+            result = bot.groups().search(group)
+        except:
+            print(group)
+            print(bot.groups())
+            print(bot.groups().search(group))
+            result = []
         if len(result):
             result_list.extend(result)
     return result_list

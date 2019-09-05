@@ -3,7 +3,7 @@
 import requests
 import json
 
-lbs_key = '81ab2641c0c4dd947318b37125ba231d'
+lbs_key = ''
 lbs_output = 'json'
 
 
