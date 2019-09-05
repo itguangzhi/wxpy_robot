@@ -13,7 +13,11 @@ def auto_accept_friends(msg):
     # 接受好友请求
     new_friend = msg.card.accept()
     # 向新的好友发送消息
-    new_friend.send('我已自动接受了您的好友请求')
+    new_friend.send('既然你这么喜欢我，想加我为好友，那我就勉为其难的接受吧~')
+    new_friend.send('我现在支持查询城市天气\r\n你可以试试“qr北京”\r\n目前仅支持城市级别的实时天气')
+    new_friend.send('我现在还可以查询当天的黄历信息\r\n你可以试试“hl”获取当天的黄历')
+    new_friend.send('当然如果有什么其他需求，也可以告诉我，尽量满足呢~')
+
 
 
 def auto_reply(msg):
